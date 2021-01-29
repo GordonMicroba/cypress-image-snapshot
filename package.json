@@ -6,7 +6,7 @@
   "author": "Jack Cross <jack@palmer.net>",
   "license": "MIT",
   "files": [
-    "*.js"
+    "src/*.js"
   ],
   "engines": {
     "node": ">=8"
