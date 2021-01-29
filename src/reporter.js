@@ -16,6 +16,20 @@ function reporter(runner) {
       console.log(chalk.red(`\n  (${chalk.underline.bold('Snapshot Diffs')})`));
 
       cache.forEach(({ diffRatio, diffPixelCount, diffOutputPath }) => {
+        
+        fs.writeFileSync(
+          `${diffOutputPath.substring(diffOutputPath.lastIndexOf('/') + 1)}.json`, 
+          JSON.stringify(
+            `{
+              "relatedImage":${diffOutputPath.substring(diffOutputPath.lastIndexOf('/') + 1)},
+              "diffRatio":${diffRatio * 100}, 
+              "diffPixel":${diffPixelCount}
+            }`
+          ),
+          { flag: 'w+' }, function (err) {
+          if (err) throw 'error writing file: ' + err;
+        });
+
         console.log(
           `\n  - ${diffOutputPath}\n    Screenshot was ${diffRatio *
             100}% different from saved snapshot with ${diffPixelCount} different pixels.\n`
