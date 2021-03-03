@@ -16,7 +16,6 @@
     "build": "babel src --out-dir .",
     "test": "jest",
     "lint": "eslint src",
-    "prepare": "npm run build",
     "changeset": "changeset",
     "release": "changeset publish"
   },
