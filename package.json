@@ -2,7 +2,6 @@
   "name": "cypress-image-snapshot",
   "version": "4.0.1",
   "description": "Cypress bindings for jest-image-snapshot.",
-  "type": "module",
   "repository": "https://github.com/palmerhq/cypress-image-snapshot",
   "author": "Jack Cross <jack@palmer.net>",
   "license": "MIT",
@@ -13,9 +12,11 @@
     "node": ">=8"
   },
   "scripts": {
+    "prebuild": "rimraf *.js",
+    "build": "cp src/*.js .",
     "test": "jest",
     "lint": "eslint src",
-    "flatten": "cp src/*.js .",
+    "prepare": "npm run build",
     "changeset": "changeset",
     "release": "changeset publish"
   },
