@@ -12,8 +12,8 @@
     "node": ">=8"
   },
   "scripts": {
-    "prebuild": "rimraf *.js",
-    "build": "cp src/* .",
+    "prebuild": "rimraf *.*js",
+    "build": "cp src/*.*js .",
     "test": "jest",
     "lint": "eslint src",
     "prepare": "npm run build",
