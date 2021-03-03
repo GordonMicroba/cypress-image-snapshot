@@ -13,7 +13,7 @@
   },
   "scripts": {
     "prebuild": "rimraf *.js",
-    "build": "cp src/*.js .",
+    "build": "cp src/* .",
     "test": "jest",
     "lint": "eslint src",
     "prepare": "npm run build",
