@@ -12,8 +12,6 @@
     "node": ">=8"
   },
   "scripts": {
-    "prebuild": "rimraf *.js",
-    "build": "babel src --out-dir .",
     "test": "jest",
     "lint": "eslint src",
     "changeset": "changeset",
