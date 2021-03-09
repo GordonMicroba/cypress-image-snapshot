@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 import termImage from 'term-img';
 import chalk from 'chalk';
 import { cachePath } from './plugin';
+import path from 'path';
 
 function fallback() {
   // do nothing
@@ -16,19 +17,25 @@ function reporter(runner) {
       console.log(chalk.red(`\n  (${chalk.underline.bold('Snapshot Diffs')})`));
 
       cache.forEach(({ diffRatio, diffPixelCount, diffOutputPath }) => {
-        
+        var dirpath = path.dirname(diffOutputPath);
         fs.writeFileSync(
-          `${diffOutputPath.substring(diffOutputPath.lastIndexOf('/') + 1)}.json`, 
+          `${dirpath}/${diffOutputPath.substring(
+            diffOutputPath.lastIndexOf('/') + 1
+          )}.json`,
           JSON.stringify(
             `{
-              "relatedImage":${diffOutputPath.substring(diffOutputPath.lastIndexOf('/') + 1)},
+              "relatedImage":${diffOutputPath.substring(
+                diffOutputPath.lastIndexOf('/') + 1
+              )},
               "diffRatio":${diffRatio * 100}, 
               "diffPixel":${diffPixelCount}
             }`
           ),
-          { flag: 'w+' }, function (err) {
-          if (err) throw 'error writing file: ' + err;
-        });
+          { flag: 'w+' },
+          function(err) {
+            if (err) throw 'error writing file: ' + err;
+          }
+        );
 
         console.log(
           `\n  - ${diffOutputPath}\n    Screenshot was ${diffRatio *
